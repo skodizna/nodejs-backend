@@ -1,0 +1,18 @@
+{
+  "name": "node-web-scrape",
+  "version": "0.0.1",
+  "description": "Scrape le web.",
+  "main": "server.js",
+  "author": "Skodak",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cheerio": "latest",
+    "express": "^4.15.4",
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.11.10",
+    "request": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.0"
+  }
+}
