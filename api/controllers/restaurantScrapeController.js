@@ -8,6 +8,20 @@ var mongoose = require('mongoose'),
 var test = true;
 
 exports.scrape_restaurants = function(req, res) {
+
+    scrapeThem();
+
+    setTimeout(function(){
+        if (test) {
+            res.send('ok');
+        }
+    }, 5000);
+
+
+};
+
+
+function scrapeThem() {
     var restaurants = new Object();
     restaurants.item = [];
 
@@ -185,15 +199,7 @@ exports.scrape_restaurants = function(req, res) {
         //console.log(restaurant);
 
     })
-
-    setTimeout(function(){
-        if (test) {
-            res.send('ok');
-        }
-    }, 5000);
-
-
-};
+}
 
 
 
