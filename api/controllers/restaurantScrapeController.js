@@ -14,6 +14,8 @@ exports.scrape_restaurants = function(req, res) {
     setTimeout(function(){
         if (test) {
             res.send('ok');
+        } else {
+            res.send('Check console !!');
         }
     }, 5000);
 
@@ -205,7 +207,7 @@ function scrapeThem() {
 
 
 function saveItem(restaurant) {
-
+    var now = new Date();
     var new_item = new Restaurant({
         "name" : restaurant.name,
         "web" : restaurant.web,
@@ -214,7 +216,6 @@ function saveItem(restaurant) {
     });
     new_item.save(function(err, task) {
         if (err) {
-            res.send(err);
             console.log(err);
             test = false;
         }
@@ -224,9 +225,9 @@ function saveItem(restaurant) {
 
     Restaurant.findOneAndUpdate(
         {name: restaurant.name, type: "today"},
-        {menu: restaurant.menu}, {new: true}, function(err, task) {
+        {menu: restaurant.menu, Created_date: now}, {new: true}, function(err, task) {
             if (err) {
-                res.send(err);
+                console.log(err);
                 test = false;
             }
 

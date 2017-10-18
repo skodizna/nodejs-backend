@@ -21,6 +21,7 @@ var millisTill10 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10
 if (millisTill10 < 0) {
     millisTill10 += 86400000; // it's after 10am, try 10am tomorrow.
 }
+console.log(millisTill10);
 setTimeout(function(){
     Scraper.scrapeThem();
 }, millisTill10);
