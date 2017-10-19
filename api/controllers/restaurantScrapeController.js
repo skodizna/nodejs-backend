@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
 
 var test = true;
 
-exports.scrape_restaurants = function(req, res) {
+function scrape_restaurants(req, res) {
 
     scrapeThem();
 
@@ -208,6 +208,7 @@ function scrapeThem() {
 
 function saveItem(restaurant) {
     var now = new Date();
+    now.setHours(now.getHours() + 2);
     var new_item = new Restaurant({
         "name" : restaurant.name,
         "web" : restaurant.web,
@@ -233,5 +234,11 @@ function saveItem(restaurant) {
 
             //res.json(task);
         });
+}
+
+module.exports = {
+    scrapeThem: scrapeThem,
+    scrape_restaurants: scrape_restaurants,
+    saveItem: saveItem
 }
 

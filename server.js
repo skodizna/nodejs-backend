@@ -7,7 +7,7 @@ var app     = express();
 var port = process.env.PORT || 8081;
 var Items = require('./api/models/restaurantListModel'); //created model loading here
 var bodyParser = require('body-parser');
-var Scraper = require('./api/controllers/restaurantScrapeController');
+var Scraper = require('./api/controllers/restaurantScrapeController.js');
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
@@ -17,13 +17,17 @@ mongoose.connect('mongodb://localhost/restaurants', {
 });
 
 var now = new Date();
-var millisTill10 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 0, 0, 0) - now;
+var allDay = 86400000;
+var millisTill10 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 35, 0, 0) - now;
 if (millisTill10 < 0) {
-    millisTill10 += 86400000; // it's after 10am, try 10am tomorrow.
+    millisTill10 += allDay; // it's after 10am, try 10am tomorrow.
 }
 console.log(millisTill10);
 setTimeout(function(){
     Scraper.scrapeThem();
+    setInterval(function(){
+        Scraper.scrapeThem();
+    }, allDay)
 }, millisTill10);
 
 
