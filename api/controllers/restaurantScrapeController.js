@@ -208,7 +208,6 @@ function scrapeThem() {
 
 function saveItem(restaurant) {
     var now = new Date();
-    now.setHours(now.getHours() + 2);
     var new_item = new Restaurant({
         "name" : restaurant.name,
         "web" : restaurant.web,
